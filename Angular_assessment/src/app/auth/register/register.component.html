@@ -24,11 +24,21 @@
                 type="text"
                 placeholder="Enter your username"
                 [formControl]="f['username']" />
-              <div *ngIf="f['username'].touched && f['username'].invalid"
+              @if(f['username'].touched && f['username'].invalid)
+              {
+
+              <div
                 class="text-red-500 text-sm mt-1">
-                <div *ngIf="f['username'].errors?.['required']">Username is
+                @if(f['username'].errors?.['required'])
+                {
+
+                <div>Username is
                   required</div>
+                }
+
               </div>
+              }
+
             </div>
           </div>
 
@@ -49,13 +59,27 @@
                 class="material-icons absolute top-[12px] right-[10px] z-10 text-text-tertiary !text-[22px] cursor-pointer">
                 {{ isShowPassword ? 'visibility_off' : 'visibility' }}
               </i>
-              <div *ngIf="f['password'].touched && f['password'].invalid"
+              @if(f['password'].touched && f['password'].invalid)
+              {
+
+              <div
                 class="text-red-500 text-sm mt-1">
-                <div *ngIf="f['password'].errors?.['required']">Password is
+                @if(f['password'].errors?.['required'])
+                {
+                <div>Password is
                   required</div>
-                <div *ngIf="f['password'].errors?.['minlength']">Password must
+                }
+
+                @if(f['password'].errors?.['minlength'])
+                {
+
+                <div>Password must
                   be at least 6 characters</div>
+                }
+
               </div>
+              }
+
             </div>
           </div>
 
@@ -76,15 +100,28 @@
                 class="material-icons absolute top-[12px] right-[10px] z-10 text-text-tertiary !text-[22px] cursor-pointer">
                 {{ isShowPassword ? 'visibility_off' : 'visibility' }}
               </i>
+              @if(f['confirmPassword'].touched && (f['confirmPassword'].errors
+              || f['confirmPassword'].hasError('confirmPasswordValidator')))
+              {
+
               <div
-                *ngIf="f['confirmPassword'].touched && (f['confirmPassword'].errors || f['confirmPassword'].hasError('confirmPasswordValidator'))"
                 class="text-red-500 text-sm mt-1">
-                <div *ngIf="f['confirmPassword'].errors?.['required']">Confirm
+                @if(f['confirmPassword'].errors?.['required'])
+                {
+
+                <div>Confirm
                   password is required</div>
-                <div
-                  *ngIf="f['confirmPassword'].hasError('confirmPasswordValidator')">Passwords
+                }
+                @if(f['confirmPassword'].hasError('confirmPasswordValidator'))
+                {
+
+                <div>Passwords
                   do not match</div>
+                }
+
               </div>
+              }
+
             </div>
           </div>
 
@@ -122,7 +159,7 @@
 
       <div class="mt-6 text-center text-text-sm-regular">
         Already have an account?
-        <a routerLink="/sign-in"
+        <a routerLink="/auth/login"
           class="font-semibold text-text-brand-primary">
           Sign in</a>
       </div>
