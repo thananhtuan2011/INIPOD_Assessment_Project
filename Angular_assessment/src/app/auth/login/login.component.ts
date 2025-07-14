@@ -6,6 +6,7 @@ import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from "@
 import { SpinnerService } from "@app/services/spinner.service";
 import { AuthenticationService } from "../service/authentication.service";
 import { IUserLogin } from "../interface/iLogin.interface";
+import { LayoutUtilsService, MessageType } from "@app/layout/services/layout-utils.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   private auth_services = inject(AuthenticationService)
   private spinnerService = inject(SpinnerService)
   private router = inject(Router);
+  private layoutUtilsService = inject(LayoutUtilsService);
   constructor(
   ) {
     this.loginForm = this.formBuilder.group({
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    // this.layoutUtilsService.showInfo('Thành công !', MessageType.Read, 3000, true, false, 3000, 'end', 1);
   }
 
 
@@ -65,7 +67,7 @@ export class LoginComponent implements OnInit {
       if (res) {
         this.auth_services.saveToken_cookie(res.accessToken, res.refreshToken)
         this.spinnerService.hide();
-        this.router.navigate(['/']);
+        this.router.navigate(['/page/home']);
       }
       else {
         this.spinnerService.hide();

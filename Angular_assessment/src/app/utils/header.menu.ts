@@ -42,11 +42,7 @@ export const MENU_ITEMS: MenuItem[] = [
         text: 'Tin tức Poké',
         id: 'pokenews',
         url: '#',
-        children: [
-            { text: 'Tin mới nhất', id: 'latest-news', url: '#' },
-            { text: 'Cập nhật', id: 'updates', url: '#' },
-            { text: 'Cộng đồng', id: 'community', url: '#' },
-        ],
+
     },
     {
         text: 'Hướng dẫn huấn luyện',

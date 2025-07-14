@@ -8,6 +8,7 @@ import { PokemonCsvRow } from './interface/pokemoncsv.inteface';
 import { Pokemon } from './entities/pokemon.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { BannerDTO } from './dto/banner.dto';
 
 @Injectable()
 export class PokemonService {
@@ -70,6 +71,19 @@ export class PokemonService {
   findAll() {
     return `This action returns all pokemon`;
   }
+  async RandomBanner(): Promise<BannerDTO[]> {
+    const rawPokemons = await this.pokemonRepository
+      .createQueryBuilder('pokemon')
+      .orderBy('RANDOM()')
+      .limit(4)
+      .getMany();
+
+    return rawPokemons.map((poke) => ({
+      ytbUrl: poke.ytbUrl,
+    }));
+  }
+
+
 
   findOne(id: number) {
     return `This action returns a #${id} pokemon`;

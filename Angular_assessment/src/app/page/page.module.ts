@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PageComponent } from './page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { HomeBannerComponent } from './home/home-banner/home-banner.component';
 
 const routes: Routes = [
   {
@@ -22,12 +23,13 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
+    HomeBannerComponent,
     PageComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-  ]
+  ],
 })
 export class PageModule { }

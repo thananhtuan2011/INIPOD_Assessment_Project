@@ -13,15 +13,18 @@
                 <div
                     class="hidden md:flex space-x-6 items-center font-bold text-sm">
                     @for (menu of MENU_ITEMS; track menu.id) {
-                    @if(menu.children?.length)
-                    {
 
                     <div class="relative group">
                         <a [href]="menu.url" class="flex items-center">
                             {{ menu.text }}
+                            @if(menu.children)
+                            {
                             <i
                                 class="material-icons text-sm ml-1">expand_more</i>
+                            }
                         </a>
+                        @if(menu.children)
+                        {
                         <div
                             class="absolute top-full left-0 hidden group-hover:block w-48 bg-white shadow-lg rounded-md overflow-hidden">
                             @for (child of menu.children; track child.id) {
@@ -31,9 +34,8 @@
                             </a>
                             }
                         </div>
+                        }
                     </div>
-                    }
-
                     }
 
                 </div>

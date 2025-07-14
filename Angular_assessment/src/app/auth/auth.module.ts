@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthLayoutComponent } from '@app/layout/component/auth-layout/auth-layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutUtilsService } from '@app/layout/services/layout-utils.service';
 
 
 const routes: Routes = [
@@ -52,6 +53,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: []
+  providers: [LayoutUtilsService]
 })
 export class AuthModule { }

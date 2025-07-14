@@ -5,7 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProgressSpinnerComponent } from './component/progress-spinner/progress-spinner.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { NotionComponent } from './component/notion/notion.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 const routes: Routes = [
   {
     path: '',
@@ -26,10 +28,13 @@ const routes: Routes = [
     LayoutComponent,
     ProgressSpinnerComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    NotionComponent
   ],
   imports: [
+    MatDialogModule,
     CommonModule,
+    MatSnackBarModule,
     RouterModule.forChild(routes),
   ],
   exports: [ProgressSpinnerComponent]

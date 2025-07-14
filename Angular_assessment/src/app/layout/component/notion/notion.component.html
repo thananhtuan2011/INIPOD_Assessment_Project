@@ -1,0 +1,35 @@
+
+<div
+    class=" p-4 rounded-lg   flex flex-col items-center ">
+
+    <div class="text-center">
+        <i
+            class="text-4xl"
+            [ngClass]="{
+          'text-green-500 fa fa-check-circle': data.meanMes === 1,
+          'text-red-500 fa fa-times-circle': data.meanMes === 0
+        }"></i>
+    </div>
+
+    <div class="text-center text-gray-800 text-sm">
+        <p>
+            {{data.message}}
+        </p>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-2">
+        <button
+            *ngIf="data.showUndoButton"
+            class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded"
+            (click)="onDismissWithAction()">
+            Undo
+        </button>
+
+        <button
+            *ngIf="data.showCloseButton"
+            class="px-4 py-1 bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm rounded"
+            (click)="onDismiss()">
+            OK
+        </button>
+    </div>
+</div>

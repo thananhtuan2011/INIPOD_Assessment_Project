@@ -22,9 +22,9 @@ export class PokemonController {
     return this.pokemonService.create(createPokemonDto);
   }
 
-  @Get()
+  @Get('randomBanner')
   findAll() {
-    return this.pokemonService.findAll();
+    return this.pokemonService.RandomBanner();
   }
 
   @Get(':id')
