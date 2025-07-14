@@ -1,0 +1,23 @@
+.login-with-apple-btn {
+    transition: background-color .3s, box-shadow .3s;
+    cursor: pointer;
+    padding: 12px 16px 12px 13px;
+    border-radius: 5px;
+    display: flex;
+    border: 1px solid gray;
+    background: white;
+    font-weight: 500;
+    color: black;
+    &:hover {
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+    }
+    &:active {
+        color: black;
+        outline: none;
+        background-color: white;
+    }
+    &:focus {
+        outline: none;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25), 0 0 0 3px #c8dafc;
+    }
+}

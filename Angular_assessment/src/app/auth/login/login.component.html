@@ -1,0 +1,90 @@
+<app-auth-layout>
+  <div class="max-w-md w-full space-y-8">
+    <div class="text-center">
+      <p class="text-headline-lg-bold">Sign in to your account</p>
+      <p class="mt-2 text-text-sm-regular text-text-secondary">
+        Or
+        <a routerLink="/auth/sign-up"
+          class="font-semibold text-text-brand-primary">
+          create a new account
+        </a>
+      </p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="mt-10">
+      <div class="flex flex-col gap-[16px]">
+        <div class="w-full">
+          <p class="text-text-secondary text-text-sm-semibold !mb-[5px]">
+            UserName
+          </p>
+          <div class="relative">
+            <i
+              class="material-icons absolute top-[12px] left-[10px] z-10 text-text-tertiary !text-[22px]">account_circle</i>
+            <input
+              type="text"
+              placeholder="Enter your username"
+              class="w-full h-[40px] rounded-md border-2 px-[12px] text-text-md-regular placeholder-text-placeholder pl-[40px]"
+              [ngClass]="{'border-red-500': f['username'].touched && f['username'].invalid, 'border-border-primary': !f['username'].touched || !f['username'].invalid}"
+              [formControl]="f['username']" />
+            <div *ngIf="f['username'].touched && f['username'].invalid"
+              class="text-red-500 text-sm mt-1">
+              <div *ngIf="f['username'].errors?.['required']">Username is
+                required</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full">
+          <div
+            class="flex justify-between items-center gap-[5px] flex-wrap !mb-[5px]">
+            <p class="text-text-secondary text-text-sm-semibold">
+              Password
+            </p>
+            <a routerLink="/forgot-password"
+              class="text-text-brand-primary text-text-sm-semibold">
+              Forgot password?
+            </a>
+          </div>
+          <div class="relative">
+            <i
+              class="material-icons absolute top-[12px] left-[10px] z-10 text-text-tertiary !text-[22px]">lock</i>
+            <input
+              [type]="isShowPassword ? 'text' : 'password'"
+              placeholder="Enter your password"
+              class="w-full h-[40px] rounded-md border-2 px-[40px] text-text-md-regular placeholder-text-placeholder"
+              [ngClass]="{'border-red-500': f['password'].touched && f['password'].invalid, 'border-border-primary': !f['password'].touched || !f['password'].invalid}"
+              [formControl]="f['password']" />
+            <i (click)="handleToggleShowPassword()"
+              class="material-icons absolute top-[12px] right-[10px] z-10 text-text-tertiary !text-[22px] cursor-pointer">
+              {{ isShowPassword ? 'visibility_off' : 'visibility' }}
+            </i>
+            <div *ngIf="f['password'].touched && f['password'].invalid"
+              class="text-red-500 text-sm mt-1">
+              <div *ngIf="f['password'].errors?.['required']">Password is
+                required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit"
+        class="button-size-md button-primary w-full justify-center mt-[34px]">
+        Sign in
+      </button>
+    </form>
+
+    <div class="mt-6">
+      <div class="relative">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-border-primary"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span class="px-2 bg-white text-text-tertiary">Or continue with</span>
+        </div>
+      </div>
+    </div>
+    <div class="w-full mt-6">
+      <!-- <app-login-social></app-login-social> -->
+    </div>
+  </div>
+</app-auth-layout>

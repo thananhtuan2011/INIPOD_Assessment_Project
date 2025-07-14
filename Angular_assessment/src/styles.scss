@@ -1,0 +1,286 @@
+// @import "~ng-zorro-antd/ng-zorro-antd.variable.min.css";
+@import "./variables.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        // TEXT COLORS
+        --text-primary: #101114;
+        --text-secondary: #414246;
+        --text-tertiary: #87888A;
+        --text-placeholder: #87888A;
+        --text-placeholder-slight: #BFC0C1;
+        --text-disabled: #87888A;
+        --text-white: #FFFFFF;
+        --text-black: #000000;
+        --text-informative: #537A52;
+        --text-success: #067757;
+        --text-danger: #D73A2F;
+        --text-warning: #D86D15;
+        --text-brand-tertiary: #A6BCA6;
+        --text-brand-primary: #537A52;
+        --text-brand-secondary: #4A6D49;
+
+        // BACKGROUND COLORS
+        --bg-overlay-brand: #ECF2EC;
+        --bg-overlay-dark: #00000080;
+        --bg-overlay-light: #FFFFFF80;
+        --bg-primary: #FFFFFF;
+        --bg-primary-fixed: #FFFFFF;
+        --bg-primary-hover: #F7F7F8;
+        --bg-primary-dark: #101114;
+        --bg-secondary: #F7F7F8;
+        --bg-secondary-hover: #E9EAEB;
+        --bg-secondary-subtle: #F7F7F8;
+        --bg-secondary-dark: #414246;
+        --bg-danger-primary: #FCF3F2;
+        --bg-danger-secondary: #FAE8E6;
+        --bg-danger-strong: #D73A2F;
+        --bg-danger-strong-hover: #B73129;
+        --bg-success-primary: #F0FEFA;
+        --bg-success-secondary: #E2FAF3;
+        --bg-success-strong: #067757;
+        --bg-warning-primary: #FDF5EC;
+        --bg-warning-secondary: #FDE6D2;
+        --bg-warning-strong: #D86D15;
+        --bg-tertiary: #E9EAEB;
+        --bg-selected: #E9EAEB;
+        --bg-disabled: #E9EAEB;
+        --bg-disabled-slight: #F7F7F8;
+        --bg-brand-primary: #F6F9F6;
+        --bg-brand-secondary: #C9D8C9;
+        --bg-brand-strong: #537A52;
+        --bg-brand-strong-hover: #4A6D49;
+
+        // OBJECT COLORS
+        --object-primary: #101114;
+        --object-white: #FFFFFF;
+        --object-secondary: #333438;
+        --object-disabled: #87888A;
+        --object-disabled-slight: #BFC0C1;
+        --object-tertiary: #414246;
+        --object-quaternary: #87888A;
+        --object-contrast-black: #00000033;
+        --object-contrast-white: #FFFFFF33;
+        --object-brand-primary: #537A52;
+        --object-brand-secondary: #81A081;
+        --object-danger-primary: #D73A2F;
+        --object-danger-secondary: #E06057;
+        --object-success-primary: #067757;
+        --object-success-secondary: #089A71;
+        --object-warning-primary: #D86D15;
+        --object-warning-secondary: #F37F20;
+
+        // BORDER COLORS
+        --border-primary: #E9EAEB;
+        --border-primary-slight: #F7F7F8;
+        --border-secondary: #BFC0C1;
+        --border-disabled: #F7F7F8;
+        --border-dark: #17181C;
+        --border-duotone: #00000066;
+        --border-white: #FFFFFF;
+        --border-tertiary: #87888A;
+        --border-brand: #537A52;
+        --border-brand-secondary: #C9D8C9;
+        --border-in-tertiary: #4A6D49;
+        --border-danger: #D73A2F;
+        --border-danger-slight: #FAE8E6;
+        --border-success: #067757;
+        --border-success-slight: #E2FAF3;
+        --border-warning: #D86D15;
+        --border-warning-slight: #FDE6D2;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+        outline: none;
+    }
+}
+
+@layer utilities {
+
+    /* **************** COMMON **************** */
+    .css-container-full {
+        @apply container;
+        max-width: unset;
+    }
+
+    /* **************** BUTTON **************** */
+    // Base button
+    .css-base-button {
+        border-radius: 8px;
+        cursor: pointer;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition: all .3s;
+
+        &:disabled {
+            pointer-events: none;
+            @apply text-text-disabled;
+            @apply bg-bg-disabled;
+            // cursor: not-allowed;
+            // opacity: 0.5;
+        }
+    }
+
+    // Size button
+    .css-button-md {
+        height: 40px !important;
+        padding: 10px 12px !important;
+        @apply text-text-sm-semibold;
+
+        img {
+            width: 16px;
+        }
+    }
+
+    // Variant button
+    .css-button-primary {
+        @apply css-base-button;
+        @apply bg-object-brand-primary;
+        @apply text-text-white;
+
+        &:hover {
+            @apply bg-bg-brand-strong-hover;
+        }
+    }
+
+    .css-button-transparent {
+        @apply css-base-button;
+        @apply bg-transparent;
+        @apply text-text-primary;
+
+        &:hover {
+            @apply bg-bg-secondary;
+        }
+    }
+
+    .css-button-outline {
+        border: 1px solid;
+        @apply shadow-sm;
+        @apply css-base-button;
+        @apply border-border-primary;
+        @apply bg-bg-primary;
+        @apply text-text-secondary;
+
+
+        &:hover {
+            @apply bg-bg-secondary;
+        }
+    }
+
+    .css-button-outline-primary {
+        border: 1px solid;
+        @apply shadow-sm;
+        @apply css-base-button;
+        @apply border-border-brand;
+        @apply bg-bg-brand-primary;
+        @apply text-text-brand-primary;
+
+
+        &:hover {
+            @apply bg-bg-brand-secondary;
+        }
+    }
+
+    .css-button-link-danger {
+        background-color: transparent;
+        @apply css-base-button;
+        @apply text-text-danger;
+        @apply text-text-sm-semibold;
+    }
+
+    .css-button-link-primary {
+        background-color: transparent;
+        @apply css-base-button;
+        @apply text-text-brand-primary;
+        @apply text-text-sm-semibold;
+        padding: 0 !important;
+    }
+
+    .css-button-danger {
+        @apply css-base-button;
+        @apply bg-object-danger-primary;
+        @apply text-text-white;
+
+        &:hover {
+            @apply bg-bg-danger-strong-hover;
+        }
+    }
+
+    .css-button-icon {
+        @apply css-base-button;
+        @apply bg-bg-primary;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+
+        img {
+            width: 20px;
+        }
+
+        &:hover {
+            @apply bg-bg-secondary
+        }
+    }
+
+    /* **************** FORM **************** */
+    // Filter dropdown
+    .css-dropdown-invisible {
+        cursor: pointer;
+        padding: 8px 6px;
+        border-radius: 8px;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        gap: 12px;
+        @apply bg-bg-primary;
+        @apply text-text-sm-semibold;
+        @apply text-text-primary;
+
+        img {
+            width: 16px;
+        }
+
+        &:hover {
+            @apply bg-bg-secondary
+        }
+    }
+
+    .css-dropdown-md {
+        height: 40px;
+        border: 2px solid;
+        padding: 8px 12px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        @apply bg-bg-primary;
+        @apply border-border-primary;
+        @apply text-text-md-regular;
+        @apply text-text-primary;
+
+        img {
+            width: 24px;
+        }
+    }
+
+    .css-dropdown-sm {
+        border: 2px solid;
+        padding: 6px 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        @apply bg-bg-primary;
+        @apply border-border-primary;
+        @apply text-text-sm-regular;
+        @apply text-text-primary;
+    }
+}

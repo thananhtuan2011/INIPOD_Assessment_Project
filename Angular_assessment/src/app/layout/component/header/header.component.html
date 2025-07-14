@@ -1,0 +1,113 @@
+<nav class="bg-[#cd1719] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+
+                <span class="text-2xl font-bold">Pokémon</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div
+                class="hidden md:flex space-x-6 items-center font-bold text-sm">
+                <div
+                    class="hidden md:flex space-x-6 items-center font-bold text-sm">
+                    @for (menu of MENU_ITEMS; track menu.id) {
+                    @if(menu.children?.length)
+                    {
+
+                    <div class="relative group">
+                        <a [href]="menu.url" class="flex items-center">
+                            {{ menu.text }}
+                            <i
+                                class="material-icons text-sm ml-1">expand_more</i>
+                        </a>
+                        <div
+                            class="absolute top-full left-0 hidden group-hover:block w-48 bg-white shadow-lg rounded-md overflow-hidden">
+                            @for (child of menu.children; track child.id) {
+                            <a [href]="child.url"
+                                class="block px-4 py-2 text-gray-800 hover:bg-red-100">
+                                {{ child.text }}
+                            </a>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    }
+
+                </div>
+
+                <!-- Login/Register Section -->
+                <div
+                    class="flex items-center space-x-2 ml-6 border-l pl-6 border-white/30">
+                    <i class="material-icons">catching_pokemon</i>
+                    <a routerLink="/auth/login"
+                        class="hover:text-red-200">Login</a>
+                    <span>|</span>
+                    <a routerLink="/auth/sign-up"
+                        class="hover:text-red-200">Register</a>
+
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center">
+                <button (click)="toggleMobileMenu()"
+                    class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                        stroke-width="2"
+                        viewBox="0 0 24 24" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    @if(isMobileMenuOpen)
+    {
+
+    <div
+        class="md:hidden px-4 pb-4 space-y-2 font-bold text-sm">
+        @for (menu of MENU_ITEMS; track menu.id) {
+        <div>
+            <div class="flex items-center justify-between"
+                (click)="toggleSubmenu(menu.id)">
+                <span>{{ menu.text }}</span>
+                @if(menu.children?.length)
+                {
+                <i
+                    class="material-icons text-base">
+                    {{ expandedMenus[menu.id] ? 'expand_less' : 'expand_more' }}
+                </i>
+                }
+
+            </div>
+
+            @if (menu.children?.length && expandedMenus[menu.id]) {
+            <div class="pl-4 mt-1 space-y-1">
+                @for (child of menu.children; track child.id) {
+                <a [href]="child.url"
+                    class="block text-white">
+                    {{ child.text }}
+                </a>
+                }
+            </div>
+            }
+        </div>
+        }
+
+        <!-- Đăng nhập / Đăng ký -->
+        <div class="flex items-center space-x-2 pt-2">
+            <i class="material-icons">catching_pokemon</i>
+            <a routerLink="/auth/login">Login</a>
+            <span>|</span>
+            <a routerLink="/auth/sign-up">Register </a>
+        </div>
+    </div>
+    }
+
+</nav>
