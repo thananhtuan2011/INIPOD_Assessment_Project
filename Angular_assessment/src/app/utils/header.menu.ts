@@ -11,7 +11,7 @@ export const MENU_ITEMS: MenuItem[] = [
         id: 'pokedex',
         url: '#',
         children: [
-            { text: 'Tất cả Pokemon', id: 'all-pokemon', url: '/page/all' },
+            { text: 'Tất cả Pokemon', id: 'all-pokemon', url: '/all' },
 
         ],
     },
@@ -20,7 +20,7 @@ export const MENU_ITEMS: MenuItem[] = [
         id: 'my-pokemon',
         url: '#',
         children: [
-            { text: 'Bộ sưu tập của tôi', id: 'my-collection', url: '/page/my-favorite' },
+            { text: 'Bộ sưu tập của tôi', id: 'my-collection', url: '/my-favorite' },
 
         ],
     },

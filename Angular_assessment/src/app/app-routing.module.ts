@@ -6,7 +6,7 @@ const routes: Routes = [
     path: "",
     loadChildren: () =>
       import('./layout/layout.module').then(t => t.LayoutModule),
-    // canActivate: [WebAppCheckTokenGuard]
+
   },
   {
     path: "auth",

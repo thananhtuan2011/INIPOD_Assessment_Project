@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       if (res) {
         this.auth_services.saveToken_cookie(res.accessToken, res.refreshToken)
         this.spinnerService.hide();
-        this.router.navigate(['/page/home']);
+        this.router.navigate(['/home']);
       }
       else {
         this.spinnerService.hide();

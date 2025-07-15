@@ -8,20 +8,23 @@ import { FooterComponent } from './component/footer/footer.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotionComponent } from './component/notion/notion.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { WebAppCheckTokenGuard } from '@app/helper/check-token.guard';
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
       {
-        path: "page",
+        path: "",
         loadChildren: () =>
           import('./../page/page.module').then(t => t.PageModule),
+        canActivate: [WebAppCheckTokenGuard]
       },
 
     ],
 
   },
+
 ];
 
 @NgModule({

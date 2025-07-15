@@ -34,6 +34,7 @@ const routes: Routes = [
         component: MyFavoriteComponent,
 
       },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
 
     ]
 
