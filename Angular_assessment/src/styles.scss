@@ -304,6 +304,22 @@
     }
 }
 
-.mat-mdc-paginator-container {
-    background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1)) !important;
+@media (max-width: 768px) {
+
+    // mobile
+    .mat-mdc-paginator-container {
+        background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1)) !important;
+        margin-top: 20px;
+
+        .mat-mdc-paginator-page-size {
+            justify-content: end;
+        }
+    }
+}
+
+@media (min-width: 769px) {
+    .mat-mdc-paginator-container {
+        margin-top: 20px;
+        background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1)) !important;
+    }
 }

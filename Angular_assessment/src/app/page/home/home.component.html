@@ -1,6 +1,14 @@
 
 
 <div class="container mx-auto px-4 py-8 ">
+    @if(pokemonList.length==0)
+    {
+
+    <button (click)="Import()" class="button-size-md button-primary">
+        Import Data
+    </button>
+    }
+
     <section>
         <h2 class="text-2xl font-bold mb-6 text-center">Top 10 Pokemon</h2>
 

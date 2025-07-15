@@ -49,4 +49,7 @@ export class PokemonService {
     return this.http.get<PaginatedResponse<Pokemon>>(pokemon + '/GetMyFavorite', { params: httpParams });
   }
 
+  ImportData() {
+    return this.http.get<Pokemon>(pokemon + '/import');
+  }
 }

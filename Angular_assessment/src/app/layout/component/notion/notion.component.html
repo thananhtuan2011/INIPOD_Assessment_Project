@@ -18,18 +18,22 @@
     </div>
 
     <div class="flex justify-center gap-2 mt-2">
+        @if(data.showUndoButton)
+        {
+
         <button
-            *ngIf="data.showUndoButton"
             class="px-4 py-1 bg-blue-500 hover:bg-blue-600 text-white text-sm rounded"
             (click)="onDismissWithAction()">
             Undo
         </button>
-
+        }
+        @if(data.showCloseButton)
+        {
         <button
-            *ngIf="data.showCloseButton"
             class="px-4 py-1 bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm rounded"
             (click)="onDismiss()">
             OK
         </button>
+        }
     </div>
 </div>

@@ -20,7 +20,15 @@ export class HomeComponent implements OnInit {
   DetailPokemon(data: Pokemon) {
     this.detailDialog.open(data);
   }
-
+  Import() {
+    this.spinnerService.show();
+    this.pokemonService.ImportData().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((res: any) => {
+      if (res) {
+        this.GetPokemon();
+        this.spinnerService.hide();
+      }
+    });
+  }
 
   GetPokemon() {
     this.spinnerService.show();

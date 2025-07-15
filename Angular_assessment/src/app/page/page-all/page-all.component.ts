@@ -80,7 +80,6 @@ export class PageAllComponent implements OnInit {
       sortOrder: 'DESC'
     }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(response => {
       this.pokemonList = response.data;
-      console.log("pokemonList", this.pokemonList);
 
       this.length = response.total;
       this.spinnerService.hide();
@@ -98,7 +97,6 @@ export class PageAllComponent implements OnInit {
     this._subscriptions.push(sb)
 
     const sbfillter = this.pokemonService.fillter$.pipe().subscribe((filter: Fillter) => {
-      console.log("filter", filter);
       if (filter) {
         this.GetPokemon(this.pageIndex + 1, this.pageSize, this.search, filter.type, Number.parseInt(filter.speed.toString()))
       }

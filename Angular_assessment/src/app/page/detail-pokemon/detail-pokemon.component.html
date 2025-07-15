@@ -1,9 +1,11 @@
 <app-modal-wrapper
     title="Chi tiết"
     (onClose)="handleClose()">
+    @if(data)
+    {
+
     <div
-        class="max-w-md mx-auto bg-white ounded-2xl p-6 space-y-4"
-        *ngIf="data">
+        class="max-w-md mx-auto bg-white ounded-2xl p-6 space-y-4">
         <div class="flex items-center space-x-4">
             <img [src]="data.image" [alt]="data.name"
                 class="w-24 h-24 object-contain" />
@@ -62,5 +64,6 @@
             </div>
         </div>
     </div>
+    }
 
 </app-modal-wrapper>
