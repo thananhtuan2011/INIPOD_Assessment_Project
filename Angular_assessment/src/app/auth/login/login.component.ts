@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.layoutUtilsService.showInfo('Thành công !', MessageType.Read, 3000, true, false, 3000, 'end', 1);
   }
 
 
@@ -71,6 +70,7 @@ export class LoginComponent implements OnInit {
       }
       else {
         this.spinnerService.hide();
+        this.layoutUtilsService.showInfo('Tài khoản hoặc mật khẩu không chính xác!', MessageType.Read, 3000, true, false, 3000, 'end', 0);
       }
     });
   }

@@ -44,13 +44,13 @@ export class AuthService {
         })
 
         if (!user) {
-            throw new HttpException({ message: "Account is not exist." }, HttpStatus.UNAUTHORIZED)
+            return null;
         }
 
         const verify = await compare(data.password, user.password)
 
         if (!verify) {
-            throw new HttpException({ message: "Password doese not correct." }, HttpStatus.UNAUTHORIZED)
+            return null;
         }
 
 

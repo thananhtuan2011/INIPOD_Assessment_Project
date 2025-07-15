@@ -146,8 +146,6 @@ export class PokemonService {
       });
     }
     if (type) {
-      console.log("type", type);
-
       qb.andWhere('pokemon.type1 = :type', { type });
     }
 
