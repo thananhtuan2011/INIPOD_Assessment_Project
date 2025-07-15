@@ -50,4 +50,5 @@ INIPOD_Assessment_Project
 -	Display a detailed view modal with the Pokémon's image and comprehensive information upon clicking on item of list.
 -	Add a favorite Pokémon feature, allowing users to mark/unmark favorite Pokémon by click to heart icon.
 
-
+##  Live deploy on render
+- https://inipod-assessment-project-angular.onrender.com/
