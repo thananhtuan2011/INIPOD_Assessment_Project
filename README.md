@@ -51,4 +51,4 @@ INIPOD_Assessment_Project
 -	Add a favorite Pokémon feature, allowing users to mark/unmark favorite Pokémon by click to heart icon.
 
 ##  Live deploy on render
-- https://inipod-assessment-project-angular.onrender.com/
+- https://inipod-assessment-project.vercel.app/
