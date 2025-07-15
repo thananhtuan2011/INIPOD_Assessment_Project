@@ -1,0 +1,12 @@
+<div
+    class="w-full flex items-center rounded-[8px] border-[2px] px-[12px] bg-bg-primary"
+    [ngStyle]="{ height: height ?? '40px'}">
+    <img src="../../../assets/svg/ic_search_gray.svg"
+        class="w-[16px] shrink-0" alt="Icon search">
+    <input
+        type="text"
+        placeholder="Search"
+        class="h-full w-full pl-[8px] text-text-sm-regular"
+        [value]="value"
+        (keyup)="handleOnChange($event)">
+</div>

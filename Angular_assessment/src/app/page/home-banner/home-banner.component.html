@@ -5,6 +5,7 @@
         @for (item of listBanner; track item.ytbUrl) {
         <div class="min-w-full aspect-video">
             <iframe
+                loading="lazy"
                 class="w-full h-full"
                 [src]="getSafeYoutubeUrl(item.ytbUrl)"
                 frameborder="0"

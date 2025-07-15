@@ -70,4 +70,29 @@ export class AuthService {
             refreshToken
         }
     }
+    async refreshToken(refreshToken: string): Promise<any> {
+        try {
+            const payload = await this.jwtService.verifyAsync(refreshToken, {
+                secret: process.env.REFRESH_TOKEN_KEY,
+            });
+
+            const newAccessToken = await this.jwtService.signAsync(
+                { id: payload.id, username: payload.username },
+                {
+                    secret: process.env.ACCESS_TOKEN_KEY,
+                    expiresIn: '1h',
+                },
+            );
+
+            return {
+                accessToken: newAccessToken,
+            };
+        } catch (error) {
+            throw new HttpException(
+                { message: 'Invalid or expired refresh token' },
+                HttpStatus.UNAUTHORIZED,
+            );
+        }
+    }
+
 }

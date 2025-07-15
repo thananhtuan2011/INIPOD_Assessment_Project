@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req, Query } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+import { JwtAuthGuard } from 'src/helper/jwt-auth.guard';
+import { PaginationQueryDto } from './dto/pagination-query.dto';
+import { JwtRequest } from 'src/helper/jwt-request.interface';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -21,10 +24,24 @@ export class PokemonController {
   create(@Body() createPokemonDto: CreatePokemonDto) {
     return this.pokemonService.create(createPokemonDto);
   }
-
+  // @UseGuards(JwtAuthGuard)
   @Get('randomBanner')
-  findAll() {
+  RandomBanner(@Req() req: Request) {
     return this.pokemonService.RandomBanner();
+  }
+  @Get('GetPokemon')
+  GetPokemon(@Req() req: Request) {
+    return this.pokemonService.GetPokemon();
+  }
+  @UseGuards(JwtAuthGuard)
+  @Get('GetPaginatedPokemon')
+  GetPaginatedPokemon(@Query() paginationDto: PaginationQueryDto, @Req() req: JwtRequest) {
+    return this.pokemonService.getPaginatedPokemon(paginationDto, req.user["id"].toString());
+  }
+  @UseGuards(JwtAuthGuard)
+  @Get('GetMyFavorite')
+  GetMyFavorite(@Query() paginationDto: PaginationQueryDto, @Req() req: JwtRequest) {
+    return this.pokemonService.GetMyFavorite(paginationDto, req.user["id"].toString());
   }
 
   @Get(':id')

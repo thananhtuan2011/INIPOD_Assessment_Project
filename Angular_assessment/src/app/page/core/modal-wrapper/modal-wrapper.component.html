@@ -1,0 +1,22 @@
+<div class="flex flex-col relative bg-bg-primary">
+    <div class="w-full sticky top-0 z-10">
+        @if(title) {
+        <div
+            class="w-full p-[16px] bg-bg-primary border-b border-border-primary-slight">
+            <p class="text-headline-sm-bold text-text-primary">{{ title
+                }}</p>
+        </div>
+        @if(onClose.observers.length) {
+        <button
+            type="button"
+            class="button-icon absolute top-1 right-1"
+            (click)="handleClose()">
+            <img src="../../../../assets/svg/ic_remove.svg" alt="Icon">
+        </button>
+        }
+        }
+    </div>
+    <div class="flex flex-col grow overflow-auto max-h-[70dvh]">
+        <ng-content></ng-content>
+    </div>
+</div>

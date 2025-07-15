@@ -9,6 +9,7 @@ import { LayoutModule } from './layout/layout.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './interceptor/error.interceptor';
+import { LayoutUtilsService } from './layout/services/layout-utils.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,16 +23,18 @@ import { ErrorInterceptor } from './interceptor/error.interceptor';
     HttpClientModule,
     LayoutModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: JwtInterceptor,
-    multi: true
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ErrorInterceptor,
-    multi: true
-  },],
+  providers: [LayoutUtilsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

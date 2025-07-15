@@ -113,8 +113,6 @@ export class ErrorInterceptor implements HttpInterceptor {
           // Si la tentative de refresh échoue avec un 401
           if (error.status === 401) {
             // Déconnexion de l'utilisateur
-            this.authenticationService.logout();
-
             // Redirection vers la page de login
             this.router.navigate(['/auth/login'], { queryParams: { sessionExpired: true } });
 

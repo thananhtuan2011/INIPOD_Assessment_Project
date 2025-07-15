@@ -11,20 +11,19 @@ export const MENU_ITEMS: MenuItem[] = [
         id: 'pokedex',
         url: '#',
         children: [
-            { text: 'Tất cả Pokémon', id: 'all-pokemon', url: '#' },
+            { text: 'Tất cả Pokemon', id: 'all-pokemon', url: '/page/all' },
             { text: 'Theo vùng', id: 'by-region', url: '#' },
             { text: 'Theo hệ', id: 'by-type', url: '#' },
             { text: 'Huyền thoại', id: 'legendary', url: '#' },
         ],
     },
     {
-        text: 'Pokémon của tôi',
+        text: 'Pokemon của tôi',
         id: 'my-pokemon',
         url: '#',
         children: [
-            { text: 'Bộ sưu tập của tôi', id: 'my-collection', url: '#' },
-            { text: 'Trạng thái huấn luyện', id: 'training-status', url: '#' },
-            { text: 'Sẵn sàng tiến hóa', id: 'evolution-ready', url: '#' },
+            { text: 'Bộ sưu tập của tôi', id: 'my-collection', url: '/page/my-favorite' },
+
         ],
     },
     {

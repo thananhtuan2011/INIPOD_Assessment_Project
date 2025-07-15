@@ -4,7 +4,8 @@
             <!-- Logo -->
             <div class="flex items-center space-x-2">
 
-                <span class="text-2xl font-bold">Pokémon</span>
+                <span class="text-2xl font-bold cursor-pointer"
+                    routerLink="/page/home">Pokemon</span>
             </div>
 
             <!-- Desktop Menu -->
@@ -15,14 +16,14 @@
                     @for (menu of MENU_ITEMS; track menu.id) {
 
                     <div class="relative group">
-                        <a [href]="menu.url" class="flex items-center">
+                        <span routerLink="menu.url" class="flex items-center">
                             {{ menu.text }}
                             @if(menu.children)
                             {
                             <i
                                 class="material-icons text-sm ml-1">expand_more</i>
                             }
-                        </a>
+                        </span>
                         @if(menu.children)
                         {
                         <div
@@ -41,6 +42,21 @@
                 </div>
 
                 <!-- Login/Register Section -->
+                @if(UserInfor)
+                {
+                <div
+                    class="flex items-center space-x-2 ml-6 border-l pl-6 border-white/30">
+                    <i class="material-icons">catching_pokemon</i>
+                    <span
+                        class="hover:text-red-200">{{UserInfor.username}}</span>
+                    <span>|</span>
+                    <span (click)="Logout()"
+                        class="hover:text-red-200">Logout</span>
+
+                </div>
+                }
+                @else{
+
                 <div
                     class="flex items-center space-x-2 ml-6 border-l pl-6 border-white/30">
                     <i class="material-icons">catching_pokemon</i>
@@ -51,6 +67,8 @@
                         class="hover:text-red-200">Register</a>
 
                 </div>
+                }
+
             </div>
 
             <!-- Mobile Menu Button -->
@@ -102,13 +120,32 @@
         </div>
         }
 
-        <!-- Đăng nhập / Đăng ký -->
-        <div class="flex items-center space-x-2 pt-2">
+        @if(UserInfor)
+        {
+        <div
+            class="flex items-center space-x-2 ml-6 border-l pl-6 border-white/30">
             <i class="material-icons">catching_pokemon</i>
-            <a routerLink="/auth/login">Login</a>
+            <span
+                class="hover:text-red-200">{{UserInfor.username}}</span>
             <span>|</span>
-            <a routerLink="/auth/sign-up">Register </a>
+            <span (click)="Logout()"
+                class="hover:text-red-200">Logout</span>
+
         </div>
+        }
+        @else{
+
+        <div
+            class="flex items-center space-x-2 ml-6 border-l pl-6 border-white/30">
+            <i class="material-icons">catching_pokemon</i>
+            <a routerLink="/auth/login"
+                class="hover:text-red-200">Login</a>
+            <span>|</span>
+            <a routerLink="/auth/sign-up"
+                class="hover:text-red-200">Register</a>
+
+        </div>
+        }
     </div>
     }
 

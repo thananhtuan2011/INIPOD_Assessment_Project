@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Favorite } from 'src/favorite/entities/favorite.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('pokemon')
 export class Pokemon {
@@ -46,4 +47,7 @@ export class Pokemon {
 
     @Column()
     ytbUrl: string;
+
+    @OneToMany(() => Favorite, favorite => favorite.pokemon)
+    favorites: Favorite[];
 }

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UserInfor } from '@app/auth/interface/iUserInfor.interface';
+import { AuthenticationService } from '@app/auth/service/authentication.service';
 import { MENU_ITEMS } from '@app/utils/header.menu';
 
 @Component({
@@ -6,7 +9,11 @@ import { MENU_ITEMS } from '@app/utils/header.menu';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  UserInfor!: UserInfor
+  private auth_services = inject(AuthenticationService)
+  private destroyRef = inject(DestroyRef);
+
   MENU_ITEMS = MENU_ITEMS;
   isMobileMenuOpen = false;
   expandedMenus: { [key: string]: boolean } = {};
@@ -16,5 +23,20 @@ export class HeaderComponent {
   }
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+  ngOnInit(): void {
+    this.GetInforUser();
+  }
+  GetInforUser() {
+    this.auth_services.GetInforUser().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((res: any) => {
+      if (res) {
+        this.UserInfor = res;
+        console.log("UserInfor", this.UserInfor);
+
+      }
+    });
+  }
+  Logout() {
+    this.auth_services.logout()
   }
 }

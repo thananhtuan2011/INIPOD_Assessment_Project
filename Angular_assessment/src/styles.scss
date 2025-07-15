@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 @layer base {
     :root {
@@ -297,4 +298,12 @@
     align-items: flex-start !important;
     justify-content: center !important;
     z-index: 1000;
+
+    .mdc-snackbar__surface {
+        background-color: #FFFFFF !important;
+    }
+}
+
+.mat-mdc-paginator-container {
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity, 1)) !important;
 }

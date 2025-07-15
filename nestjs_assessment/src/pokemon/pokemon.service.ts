@@ -9,6 +9,7 @@ import { Pokemon } from './entities/pokemon.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BannerDTO } from './dto/banner.dto';
+import { PaginationQueryDto } from './dto/pagination-query.dto';
 
 @Injectable()
 export class PokemonService {
@@ -47,6 +48,7 @@ export class PokemonService {
             legendary: data.legendary,
             image: data.image,
             ytbUrl: data.ytbUrl,
+            favorites: []
           });
         })
         .on('end', async () => {
@@ -83,6 +85,86 @@ export class PokemonService {
     }));
   }
 
+  async GetMyFavorite(query: PaginationQueryDto, userId: string) {
+    const { page, limit, search, sortBy = 'id', sortOrder = 'ASC' } = query;
+    const qb = this.pokemonRepository.createQueryBuilder('pokemon');
+
+    qb.innerJoin(
+      'pokemon.favorites',
+      'favorite',
+      'favorite.userId = :userId',
+      { userId }
+    );
+    if (search) {
+      qb.where('pokemon.name ILIKE :search OR pokemon.type1 ILIKE :search', {
+        search: `%${search}%`,
+      });
+    }
+
+    qb.orderBy(`pokemon.${sortBy}`, sortOrder.toUpperCase() as 'ASC' | 'DESC');
+
+    qb.skip((page - 1) * limit).take(limit);
+
+
+    const [rawData, total] = await qb.getManyAndCount();
+    const data = rawData.map((pokemon: any) => ({
+      ...pokemon,
+      isFavorite: true
+    }));
+
+    return {
+      data,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
+
+  async GetPokemon(): Promise<Pokemon[]> {
+    const data = await this.pokemonRepository
+      .createQueryBuilder('pokemon')
+      .limit(10)
+      .getMany();
+
+    return data;
+  }
+  async getPaginatedPokemon(query: PaginationQueryDto, userId: string) {
+    const { page, limit, search, sortBy = 'id', sortOrder = 'ASC' } = query;
+    const qb = this.pokemonRepository.createQueryBuilder('pokemon');
+
+    qb.leftJoinAndSelect(
+      'pokemon.favorites',
+      'favorite',
+      'favorite.pokemonId = pokemon.id AND favorite.userId = :userId',
+      { userId }
+    );
+    if (search) {
+      qb.where('pokemon.name ILIKE :search OR pokemon.type1 ILIKE :search', {
+        search: `%${search}%`,
+      });
+    }
+
+    qb.orderBy(`pokemon.${sortBy}`, sortOrder.toUpperCase() as 'ASC' | 'DESC');
+
+    qb.skip((page - 1) * limit).take(limit);
+
+
+    const [rawData, total] = await qb.getManyAndCount();
+    const data = rawData.map((pokemon: any) => ({
+      ...pokemon,
+      isFavorite: pokemon.favorites.length > 0 ? true : false,
+    }));
+
+    return {
+      data,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
 
 
   findOne(id: number) {
