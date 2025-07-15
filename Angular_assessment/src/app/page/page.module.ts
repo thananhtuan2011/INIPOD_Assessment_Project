@@ -9,10 +9,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { SearchComponent } from './core/search/search.component';
 import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
-import { ModalWrapperComponent } from './core/modal-wrapper/modal-wrapper.component';
 import { MyFavoriteComponent } from './my-favorite/my-favorite.component';
+import { FormsModule } from '@angular/forms';
+import { CoreModule } from './core/core.module';
+import { FillterComponent } from './fillter/fillter.component';
 const routes: Routes = [
   {
     path: '',
@@ -33,10 +34,7 @@ const routes: Routes = [
         component: MyFavoriteComponent,
 
       },
-      {
-        path: '**',
-        redirectTo: "home"
-      }
+
     ]
 
   },
@@ -49,16 +47,17 @@ const routes: Routes = [
     PageComponent,
     HomeComponent,
     PageAllComponent,
-    SearchComponent,
     DetailPokemonComponent,
-    ModalWrapperComponent,
     MyFavoriteComponent,
+    FillterComponent,
   ],
   imports: [
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
+    FormsModule,
+    CoreModule,
     MatPaginatorModule,
     MatPaginatorModule,
     RouterModule.forChild(routes),

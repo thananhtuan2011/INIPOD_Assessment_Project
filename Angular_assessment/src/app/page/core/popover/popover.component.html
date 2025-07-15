@@ -1,0 +1,15 @@
+<div #targetElement (click)="handleToggle()" class="targetPopover">
+    <ng-content select="[target]"></ng-content>
+</div>
+@if(content && isShow) {
+<div #contentElement
+    class="wrapperPopover"
+    [class.clearPadding]=isClearPadding>
+    <div (click)="handleClickOnContent()">
+        <ng-container [ngTemplateOutlet]="content"></ng-container>
+    </div>
+</div>
+}
+@if(isShow && isClickOverlayToClose) {
+<div class="overlayPopover" (click)="handleHideContent()"></div>
+}

@@ -11,7 +11,6 @@ export class DetailPokemonComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    console.log("data", this.data);
 
   }
   handleClose() {

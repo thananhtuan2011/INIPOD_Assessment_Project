@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Banner } from '../interface/iBanner.interface';
 import { Pokemon } from '../interface/iPokemon.interface';
@@ -10,6 +10,7 @@ const pokemon = environment.HOST_API + "/pokemon"
   providedIn: 'root'
 })
 export class PokemonService {
+  public fillter$ = new Subject<any>();
   private http = inject(HttpClient)
   constructor() { }
 
@@ -21,21 +22,15 @@ export class PokemonService {
   }
 
 
-  getPokemonList(params: {
-    page?: number;
-    limit?: number;
-    search?: string;
-    sortBy?: string;
-    sortOrder?: 'ASC' | 'DESC';
-  }): Observable<PaginatedResponse<Pokemon>> {
-    let httpParams = new HttpParams();
-    if (params.page) httpParams = httpParams.set('page', params.page);
-    if (params.limit) httpParams = httpParams.set('limit', params.limit);
-    if (params.search) httpParams = httpParams.set('search', params.search);
-    if (params.sortBy) httpParams = httpParams.set('sortBy', params.sortBy);
-    if (params.sortOrder) httpParams = httpParams.set('sortOrder', params.sortOrder);
+  getPokemonList(queryParams: any): Observable<PaginatedResponse<Pokemon>> {
+    let params = new HttpParams();
+    Object.entries(queryParams).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== '') {
+        params = params.set(key, value.toString());
+      }
+    });
 
-    return this.http.get<PaginatedResponse<Pokemon>>(pokemon + '/GetPaginatedPokemon', { params: httpParams });
+    return this.http.get<PaginatedResponse<Pokemon>>(pokemon + '/GetPaginatedPokemon', { params });
   }
   GetMyFavorite(params: {
     page?: number;

@@ -16,9 +16,14 @@
                     Type:
                     <span class="text-blue-600 font-medium">{{ data.type1
                         }}</span>
-                    <span *ngIf="data.type2">/ <span
+                    @if(data.type2)
+                    {
+
+                    <span>/ <span
                             class="text-blue-600 font-medium">{{ data.type2
                             }}</span></span>
+                    }
+
                 </p>
             </div>
         </div>

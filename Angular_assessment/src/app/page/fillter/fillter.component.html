@@ -1,0 +1,46 @@
+<div
+    class="w-full shadow-md rounded-[8px] bg-bg-primary border border-border-primary-slight">
+    <div class="w-full flex flex-col gap-[16px] p-[16px]">
+        <div class="flex items-center mxw600:flex-col gap-[16px]">
+            <div class="w-full">
+                <p
+                    class="text-text-secondary text-text-sm-semibold mb-[2px]">Type
+                </p>
+                <input
+                    type="text"
+                    [(ngModel)]="type"
+                    placeholder="Type"
+                    class="w-full h-[40px] rounded-md border-2 border-border-primary px-[12px] text-text-md-regular placeholder-text-placeholder">
+            </div>
+            <div class="w-full">
+                <p
+                    class="text-text-secondary text-text-sm-semibold mb-[2px]">Speed
+                    ranges
+                </p>
+                <input
+                    type="text"
+                    [(ngModel)]="speed"
+                    placeholder="Speed"
+                    class="w-full h-[40px] rounded-md border-2 border-border-primary px-[12px] text-text-md-regular placeholder-text-placeholder">
+            </div>
+        </div>
+
+    </div>
+    <div
+        class="border-t border-border-primary-slight w-full flex justify-between items-center gap-[12px] flex-wrap p-[16px]">
+
+        <div class="flex items-center gap-[12px]">
+            <button class="button-link-danger" (click)="handleApply()">
+                Reset
+            </button>
+            <button class="button-size-md button-outline"
+                (click)="handleCancel()">
+                Cancel
+            </button>
+            <button class="button-size-md button-primary"
+                (click)="handleApply()">
+                Apply
+            </button>
+        </div>
+    </div>
+</div>

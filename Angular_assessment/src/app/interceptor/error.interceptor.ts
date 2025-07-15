@@ -93,39 +93,28 @@ export class ErrorInterceptor implements HttpInterceptor {
       isRefreshing = true;
       refreshTokenSubject.next(null);
 
-      // Tente de rafraîchir le token
       return this.authenticationService.refreshAccessToken({ refreshToken: this.authenticationService.getRefreshToken() }).pipe(
         switchMap((response: any) => {
           isRefreshing = false;
 
-          // Enregistrer les nouveaux tokens
           this.authenticationService.saveToken_cookie(response);
 
-          // Émettre le nouveau accessToken
           refreshTokenSubject.next(response);
 
-          // Rejouer la requête initiale avec le nouveau token
           return next.handle(this.addToken(request, response));
         }),
         catchError((error) => {
           isRefreshing = false;
+          this.authenticationService.logout();
+          this.router.navigate(['/auth/login']);
 
-          // Si la tentative de refresh échoue avec un 401
-          if (error.status === 401) {
-            // Déconnexion de l'utilisateur
-            // Redirection vers la page de login
-            this.router.navigate(['/auth/login'], { queryParams: { sessionExpired: true } });
+          return throwError(() => new Error('Session expired. Please log in again.'));
 
-            return throwError(() => new Error('Session expired. Please log in again.'));
-          }
-
-          return throwError(() => error);
         })
       );
     } else {
-      // Si une requête est déjà en cours de rafraîchissement
       return refreshTokenSubject.pipe(
-        filter(token => token != null), // Attend que le token soit mis à jour
+        filter(token => token != null),
         take(1),
         switchMap(token => next.handle(this.addToken(request, token!)))
       );

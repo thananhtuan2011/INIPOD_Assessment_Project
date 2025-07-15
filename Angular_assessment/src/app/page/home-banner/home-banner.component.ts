@@ -33,8 +33,6 @@ export class HomeBannerComponent implements OnInit, OnDestroy {
     this.pokemonService.randomBanner().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((res: any) => {
       if (res) {
         this.listBanner = res;
-        console.log("listBanner", this.listBanner);
-
       }
 
     });
@@ -64,7 +62,6 @@ export class HomeBannerComponent implements OnInit, OnDestroy {
     this.randomBanner();
   }
   ngOnDestroy(): void {
-    console.log("dess");
 
     if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);

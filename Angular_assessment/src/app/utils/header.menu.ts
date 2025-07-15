@@ -7,14 +7,12 @@ export interface MenuItem {
 
 export const MENU_ITEMS: MenuItem[] = [
     {
-        text: 'Pokédex',
+        text: 'Pokemon',
         id: 'pokedex',
         url: '#',
         children: [
             { text: 'Tất cả Pokemon', id: 'all-pokemon', url: '/page/all' },
-            { text: 'Theo vùng', id: 'by-region', url: '#' },
-            { text: 'Theo hệ', id: 'by-type', url: '#' },
-            { text: 'Huyền thoại', id: 'legendary', url: '#' },
+
         ],
     },
     {

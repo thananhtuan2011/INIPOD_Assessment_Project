@@ -1,0 +1,31 @@
+.targetPopover {
+    cursor: pointer;
+}
+
+.wrapperPopover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    padding: 4px;
+    display: none;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px 4px #0000000D;
+    background-color: white;
+}
+
+.wrapperPopover.clearPadding {
+    padding: 0;
+    box-shadow: none
+}
+
+.overlayPopover {
+    width: 200vw;
+    height: 200vh;
+    background-color: transparent;
+    z-index: 9;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -31,7 +31,6 @@ export class HeaderComponent implements OnInit {
     this.auth_services.GetInforUser().pipe(takeUntilDestroyed(this.destroyRef)).subscribe((res: any) => {
       if (res) {
         this.UserInfor = res;
-        console.log("UserInfor", this.UserInfor);
 
       }
     });

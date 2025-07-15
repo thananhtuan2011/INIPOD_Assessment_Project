@@ -17,6 +17,15 @@ export class PaginationQueryDto {
   search?: string;
 
   @IsOptional()
+  @Type(() => Number)
+  @IsPositive()
+  speed: number = 20;
+
+  @IsOptional()
+  @IsString()
+  type?: string;
+
+  @IsOptional()
   @IsString()
   sortBy?: string;
   @IsOptional()

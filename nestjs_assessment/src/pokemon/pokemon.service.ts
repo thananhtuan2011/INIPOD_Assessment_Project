@@ -86,7 +86,7 @@ export class PokemonService {
   }
 
   async GetMyFavorite(query: PaginationQueryDto, userId: string) {
-    const { page, limit, search, sortBy = 'id', sortOrder = 'ASC' } = query;
+    const { page, limit, search, sortBy = 'id', sortOrder = 'ASC', type, speed } = query;
     const qb = this.pokemonRepository.createQueryBuilder('pokemon');
 
     qb.innerJoin(
@@ -131,7 +131,7 @@ export class PokemonService {
     return data;
   }
   async getPaginatedPokemon(query: PaginationQueryDto, userId: string) {
-    const { page, limit, search, sortBy = 'id', sortOrder = 'ASC' } = query;
+    const { page, limit, search, sortBy = 'id', sortOrder = 'ASC', type, speed } = query;
     const qb = this.pokemonRepository.createQueryBuilder('pokemon');
 
     qb.leftJoinAndSelect(
@@ -144,6 +144,15 @@ export class PokemonService {
       qb.where('pokemon.name ILIKE :search OR pokemon.type1 ILIKE :search', {
         search: `%${search}%`,
       });
+    }
+    if (type) {
+      console.log("type", type);
+
+      qb.andWhere('pokemon.type1 = :type', { type });
+    }
+
+    if (speed !== undefined && speed != 0) {
+      qb.andWhere('pokemon.speed= :speed', { speed });
     }
 
     qb.orderBy(`pokemon.${sortBy}`, sortOrder.toUpperCase() as 'ASC' | 'DESC');
